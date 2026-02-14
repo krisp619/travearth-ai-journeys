@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const primaryLinks = [
     { label: "Home", to: "/" },
-    { label: "Plan Trip", to: "/plan" },
+    ...(user ? [{ label: "Plan Trip", to: "/plan" }] : []),
   ];
 
   const exploreLinks = [
@@ -34,8 +34,6 @@ const Navbar = () => {
     { label: "How It Works", to: "/how-it-works" },
     { label: "About Us", to: "/about-us" },
     { label: "Contact", to: "/contact" },
-    { label: "Privacy Policy", to: "/privacy-policy" },
-    { label: "Terms of Service", to: "/terms" },
   ];
 
   return (
@@ -61,35 +59,39 @@ const Navbar = () => {
               </Link>
             ))}
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all inline-flex items-center gap-1">
-                  Explore <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56">
-                {exploreLinks.map((link) => (
-                  <DropdownMenuItem key={link.to} asChild>
-                    <Link to={link.to}>{link.label}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {user && (
+              <>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all inline-flex items-center gap-1">
+                      Explore <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56">
+                    {exploreLinks.map((link) => (
+                      <DropdownMenuItem key={link.to} asChild>
+                        <Link to={link.to}>{link.label}</Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all inline-flex items-center gap-1">
-                  Company <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56">
-                {companyLinks.map((link) => (
-                  <DropdownMenuItem key={link.to} asChild>
-                    <Link to={link.to}>{link.label}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all inline-flex items-center gap-1">
+                      Company <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56">
+                    {companyLinks.map((link) => (
+                      <DropdownMenuItem key={link.to} asChild>
+                        <Link to={link.to}>{link.label}</Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            )}
 
             {role && role !== "guest" && (
               <Link
@@ -196,37 +198,41 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              <div className="pt-2">
-                <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
-                  Explore
-                </div>
-                {exploreLinks.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
+              {user && (
+                <>
+                  <div className="pt-2">
+                    <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+                      Explore
+                    </div>
+                    {exploreLinks.map((link) => (
+                      <Link
+                        key={link.to}
+                        to={link.to}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
 
-              <div className="pt-2">
-                <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
-                  Company
-                </div>
-                {companyLinks.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
+                  <div className="pt-2">
+                    <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+                      Company
+                    </div>
+                    {companyLinks.map((link) => (
+                      <Link
+                        key={link.to}
+                        to={link.to}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
 
               {role && role !== "guest" && (
                 <Link

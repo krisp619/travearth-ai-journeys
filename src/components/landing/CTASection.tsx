@@ -1,9 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { getCurrentUser } from "@/lib/auth";
 
 const CTASection = () => {
+  const navigate = useNavigate();
+  const user = getCurrentUser();
+
+  const handlePlanClick = () => {
+    if (user) {
+      navigate("/plan");
+    } else {
+      navigate("/auth");
+    }
+  };
   return (
     <section className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,18 +38,17 @@ const CTASection = () => {
               Ready to Explore the World?
             </h2>
             <p className="text-lg text-primary-foreground/70 mb-8 leading-relaxed">
-              Start planning your dream trip in seconds. No account required to try — just enter your destination and let AI do the magic.
+              Start planning your dream trip in seconds. Sign up for free to unlock AI-powered itineraries tailored just for you.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/plan">
-                <Button
-                  size="lg"
-                  className="text-base px-10 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-travel group"
-                >
-                  Plan My Trip Now
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                className="text-base px-10 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-travel group"
+                onClick={handlePlanClick}
+              >
+                Plan My Trip Now
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
               <Link to="/auth">
                 <Button
                   size="lg"

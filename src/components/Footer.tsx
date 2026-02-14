@@ -10,8 +10,8 @@ const Footer = () => {
     <footer className="bg-navy text-primary-foreground/80">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
 
-        {/* 5 Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-12">
+        {/* 6 Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-8 lg:gap-12">
 
           {/* Brand */}
           <div>
@@ -160,6 +160,25 @@ const Footer = () => {
               <li>
                 <Link to="/blog" className="text-sm hover:text-coral transition-colors">
                   Blog
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-sm font-semibold text-primary-foreground mb-4 uppercase tracking-wider">
+              Legal
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/privacy-policy" className="text-sm hover:text-coral transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-sm hover:text-coral transition-colors">
+                  Terms of Service
                 </Link>
               </li>
             </ul>

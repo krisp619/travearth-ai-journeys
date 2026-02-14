@@ -15,7 +15,7 @@ const ProtectedRoute = ({ allowedRoles, children }: ProtectedRouteProps) => {
   const role = user?.role ?? (typeof window !== "undefined" ? localStorage.getItem("travearth_role") : null);
 
   if (!role || !allowedRoles.includes(role as TravearthRole)) {
-    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+    return <Navigate to="/auth" replace state={{ from: location.pathname }} />;
   }
 
   return <>{children}</>;

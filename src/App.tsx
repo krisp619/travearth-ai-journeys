@@ -41,11 +41,18 @@ const App = () => (
         <Suspense fallback={routeFallback}>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/plan" element={<PlanTrip />} />
+          <Route
+            path="/plan"
+            element={
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
+                <PlanTrip />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/create-trip"
             element={
-              <ProtectedRoute allowedRoles={["user"]}>
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
                 <CreateTrip />
               </ProtectedRoute>
             }
@@ -53,7 +60,7 @@ const App = () => (
           <Route
             path="/itinerary/:id"
             element={
-              <ProtectedRoute allowedRoles={["user", "guest"]}>
+              <ProtectedRoute allowedRoles={["user", "admin", "partner", "guest"]}>
                 <Itinerary />
               </ProtectedRoute>
             }
@@ -61,7 +68,7 @@ const App = () => (
           <Route
             path="/trips"
             element={
-              <ProtectedRoute allowedRoles={["user"]}>
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
                 <Trips />
               </ProtectedRoute>
             }
@@ -69,21 +76,70 @@ const App = () => (
           <Route
             path="/my-trips"
             element={
-              <ProtectedRoute allowedRoles={["user"]}>
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
                 <Trips />
               </ProtectedRoute>
             }
           />
 
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/about-us"
+            element={
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
+                <AboutUs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
+                <Contact />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/popular-destinations" element={<PopularDestinations />} />
-          <Route path="/travel-tips" element={<TravelTips />} />
-          <Route path="/budget-planning" element={<BudgetPlanning />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route
+            path="/how-it-works"
+            element={
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
+                <HowItWorks />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/popular-destinations"
+            element={
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
+                <PopularDestinations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/travel-tips"
+            element={
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
+                <TravelTips />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/budget-planning"
+            element={
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
+                <BudgetPlanning />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <ProtectedRoute allowedRoles={["user", "admin", "partner"]}>
+                <Blog />
+              </ProtectedRoute>
+            }
+          />
 
           <Route path="/auth" element={<Auth />} />
           <Route path="/login" element={<Auth />} />

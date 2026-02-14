@@ -3,10 +3,19 @@ import { ArrowRight, Sparkles, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import HomeSlider from "@/components/landing/HomeSlider";
-import { loginAsGuest } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth";
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const user = getCurrentUser();
+
+  const handlePlanClick = () => {
+    if (user) {
+      navigate("/plan");
+    } else {
+      navigate("/auth");
+    }
+  };
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
@@ -60,26 +69,22 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Link to="/plan">
-              <Button
-                size="lg"
-                className="text-base px-8 py-6 shadow-travel bg-primary hover:bg-primary/90 text-primary-foreground group"
-              >
-                Start Planning
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
             <Button
               size="lg"
-              className="text-base px-8 py-6 shadow-coral bg-coral hover:bg-coral-dark text-primary-foreground"
-              onClick={() => {
-                const guest = loginAsGuest();
-                localStorage.setItem("travearth_role", guest.role);
-                navigate("/plan");
-              }}
+              className="text-base px-8 py-6 shadow-travel bg-primary hover:bg-primary/90 text-primary-foreground group"
+              onClick={handlePlanClick}
             >
-              Try as Guest
+              Start Planning
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
+            <Link to="/auth">
+              <Button
+                size="lg"
+                className="text-base px-8 py-6 shadow-coral bg-coral hover:bg-coral-dark text-primary-foreground"
+              >
+                Sign Up Free
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Stats */}
