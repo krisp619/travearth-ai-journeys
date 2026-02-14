@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import {
   SidebarProvider,
   Sidebar,
@@ -81,16 +80,15 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
               </div>
             </SidebarFooter>
           </Sidebar>
-          <main className="flex-1 overflow-auto flex flex-col">
+          <main className="flex-1 overflow-auto">
             <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
               <div className="flex h-14 items-center gap-4 px-4">
                 <SidebarTrigger />
               </div>
             </div>
-            <div className="flex-1 p-6">
+            <div className="p-6">
               {children}
             </div>
-            <Footer />
           </main>
         </div>
       </SidebarProvider>
