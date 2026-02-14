@@ -23,6 +23,7 @@ const PopularDestinations = lazy(() => import("./pages/PopularDestinations"));
 const TravelTips = lazy(() => import("./pages/TravelTips"));
 const BudgetPlanning = lazy(() => import("./pages/BudgetPlanning"));
 const Blog = lazy(() => import("./pages/Blog"));
+const CityInfo = lazy(() => import("./pages/CityInfo"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const PartnerDashboard = lazy(() => import("./pages/PartnerDashboard"));
 
@@ -140,6 +141,7 @@ const App = () => (
               </ProtectedRoute>
             }
           />
+          <Route path="/city/:cityName" element={<CityInfo />} />
 
           <Route path="/auth" element={<Auth />} />
           <Route path="/login" element={<Auth />} />

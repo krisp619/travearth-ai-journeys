@@ -64,7 +64,7 @@ const PopularDestinationsSection = () => {
           {destinations.map((d, index) => (
             <Link
               key={d.name}
-              to={`/plan?city=${encodeURIComponent(d.name)}`}
+              to={`/city/${encodeURIComponent(d.name)}`}
               className={cn(
                 "group block rounded-2xl bg-card border border-border/50 overflow-hidden hover:shadow-travel hover:border-primary/20 transition-all duration-500",
                 isVisible ? "animate-[fade-up_0.6s_ease-out_both]" : "",

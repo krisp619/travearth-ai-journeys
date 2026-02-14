@@ -30,7 +30,7 @@ const PopularDestinations = () => {
               {destinations.map((d) => (
                 <Link
                   key={d.name}
-                  to={`/plan?city=${encodeURIComponent(d.name)}`}
+                  to={`/city/${encodeURIComponent(d.name)}`}
                   className="block group"
                 >
                   <section className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 group-hover:shadow-md group-hover:-translate-y-1 cursor-pointer">
