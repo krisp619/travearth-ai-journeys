@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,6 +10,29 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "@/components/ui/use-toast";
 import { getCurrentUser } from "@/lib/auth";
 import { getPromptTemplate, savePromptTemplate } from "@/lib/ai";
+import {
+  SidebarProvider,
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import {
+  LayoutDashboard,
+  Users,
+  MapPin,
+  Settings,
+  MessageSquare,
+  BarChart3,
+  Home,
+} from "lucide-react";
 
 interface AdminUser {
   id: string;
@@ -19,6 +43,7 @@ interface AdminUser {
 
 const Admin = () => {
   const user = getCurrentUser();
+  const location = useLocation();
   const [destinations, setDestinations] = useState(["Paris", "Bali", "New York", "Kyoto"]);
   const [newDestination, setNewDestination] = useState("");
   const [promptTemplate, setPromptTemplate] = useState(getPromptTemplate());
@@ -27,6 +52,15 @@ const Admin = () => {
     { id: "u2", name: "Jordan", email: "jordan@travel.com", status: "blocked" },
     { id: "u3", name: "Samira", email: "samira@travel.com", status: "active" },
   ]);
+
+  const menuItems = [
+    { title: "Dashboard", icon: LayoutDashboard, url: "/admin" },
+    { title: "Users", icon: Users, url: "#users" },
+    { title: "Destinations", icon: MapPin, url: "#destinations" },
+    { title: "AI Settings", icon: Settings, url: "#ai-settings" },
+    { title: "Feedback", icon: MessageSquare, url: "#feedback" },
+    { title: "Analytics", icon: BarChart3, url: "#analytics" },
+  ];
 
   const stats = useMemo(
     () => [
@@ -59,17 +93,57 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-24 pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              <h1 className="text-3xl font-display font-bold">Admin Panel</h1>
-              <p className="text-muted-foreground">Manage Travearth operations and AI settings.</p>
+      <SidebarProvider>
+        <div className="flex w-full pt-16">
+          <Sidebar>
+            <SidebarHeader className="border-b border-sidebar-border p-4">
+              <Link to="/" className="flex items-center gap-2">
+                <Home className="h-5 w-5" />
+                <span className="font-semibold">Admin Panel</span>
+              </Link>
+            </SidebarHeader>
+            <SidebarContent>
+              <SidebarGroup>
+                <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {menuItems.map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton asChild>
+                          <a href={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            </SidebarContent>
+            <SidebarFooter className="border-t border-sidebar-border p-4">
+              <div className="text-xs text-muted-foreground">
+                Logged in as {user?.name}
+              </div>
+            </SidebarFooter>
+          </Sidebar>
+          <main className="flex-1 overflow-auto">
+            <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+              <div className="flex h-14 items-center gap-4 px-4">
+                <SidebarTrigger />
+                <h1 className="text-lg font-semibold">Admin Panel</h1>
+              </div>
             </div>
-            {user?.role !== "admin" && (
-              <Badge variant="secondary">Limited access · sign in with admin email</Badge>
-            )}
-          </div>
+            <div className="p-6 space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <h2 className="text-2xl font-display font-bold">Overview</h2>
+                  <p className="text-muted-foreground">Manage Travearth operations and AI settings.</p>
+                </div>
+                {user?.role !== "admin" && (
+                  <Badge variant="secondary">Limited access · sign in with admin email</Badge>
+                )}
+              </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat) => (
@@ -82,7 +156,7 @@ const Admin = () => {
             ))}
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2" id="users">
             <Card className="shadow-travel">
               <CardHeader>
                 <CardTitle>User management</CardTitle>
@@ -103,7 +177,7 @@ const Admin = () => {
               </CardContent>
             </Card>
 
-            <Card className="shadow-travel">
+            <Card className="shadow-travel" id="destinations">
               <CardHeader>
                 <CardTitle>Destination management</CardTitle>
                 <CardDescription>Prioritize destinations and content.</CardDescription>
@@ -128,7 +202,7 @@ const Admin = () => {
             </Card>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2" id="ai-settings">
             <Card className="shadow-travel">
               <CardHeader>
                 <CardTitle>AI prompt tuning</CardTitle>
@@ -144,7 +218,7 @@ const Admin = () => {
               </CardContent>
             </Card>
 
-            <Card className="shadow-travel">
+            <Card className="shadow-travel" id="feedback">
               <CardHeader>
                 <CardTitle>Feedback & analytics</CardTitle>
                 <CardDescription>Snapshot of recent insights.</CardDescription>
@@ -166,8 +240,10 @@ const Admin = () => {
               </CardContent>
             </Card>
           </div>
+            </div>
+          </main>
         </div>
-      </main>
+      </SidebarProvider>
       <Footer />
     </div>
   );
