@@ -1,4 +1,5 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -219,6 +220,11 @@ const CityInfo = () => {
   const user = getCurrentUser();
   
   const city = cityName ? cityData[cityName] : null;
+
+  // Scroll to top when component mounts or cityName changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [cityName]);
 
   if (!city) {
     return (
