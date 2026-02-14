@@ -13,6 +13,11 @@ const Itinerary = lazy(() => import("./pages/Itinerary"));
 const Trips = lazy(() => import("./pages/Trips"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
+const AdminUsers = lazy(() => import("./pages/admin/Users"));
+const AdminDestinations = lazy(() => import("./pages/admin/Destinations"));
+const AdminAISettings = lazy(() => import("./pages/admin/AISettings"));
+const AdminFeedback = lazy(() => import("./pages/admin/Feedback"));
+const AdminAnalytics = lazy(() => import("./pages/admin/Analytics"));
 const CreateTrip = lazy(() => import("./pages/CreateTrip"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -151,6 +156,46 @@ const App = () => (
             element={
               <ProtectedRoute allowedRoles={["admin"]}>
                 <Admin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminUsers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/destinations"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminDestinations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/ai-settings"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminAISettings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/feedback"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminFeedback />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/analytics"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminAnalytics />
               </ProtectedRoute>
             }
           />
