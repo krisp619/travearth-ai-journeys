@@ -12,6 +12,24 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+
+          if (id.includes("react-router")) return "router";
+          if (id.includes("@tanstack")) return "tanstack";
+          if (id.includes("@supabase")) return "supabase";
+          if (id.includes("recharts")) return "charts";
+          if (id.includes("framer-motion")) return "motion";
+          if (id.includes("@radix-ui")) return "radix";
+
+          return "vendor";
+        },
+      },
+    },
+  },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {

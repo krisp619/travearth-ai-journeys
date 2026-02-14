@@ -33,7 +33,7 @@ const CTASection = () => {
               <Link to="/plan">
                 <Button
                   size="lg"
-                  className="text-base px-10 py-6 bg-coral hover:bg-coral-dark text-primary-foreground shadow-coral group"
+                  className="text-base px-10 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-travel group"
                 >
                   Plan My Trip Now
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -42,8 +42,7 @@ const CTASection = () => {
               <Link to="/auth">
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="text-base px-8 py-6 border-primary-foreground/25 text-primary-foreground hover:bg-primary-foreground/10"
+                  className="text-base px-8 py-6 bg-coral hover:bg-coral-dark text-primary-foreground shadow-coral"
                 >
                   Create Free Account
                 </Button>

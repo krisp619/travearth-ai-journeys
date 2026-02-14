@@ -1,20 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Sparkles, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import heroImage from "@/assets/hero-travel.jpg";
+import HomeSlider from "@/components/landing/HomeSlider";
+import { loginAsGuest } from "@/lib/auth";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Breathtaking tropical coastline at sunset"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
+        <HomeSlider />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/60 to-navy/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent" />
       </div>
@@ -65,21 +63,23 @@ const HeroSection = () => {
             <Link to="/plan">
               <Button
                 size="lg"
-                className="text-base px-8 py-6 shadow-coral bg-coral hover:bg-coral-dark text-primary-foreground group"
+                className="text-base px-8 py-6 shadow-travel bg-primary hover:bg-primary/90 text-primary-foreground group"
               >
                 Start Planning
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <Link to="/plan">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-base px-8 py-6 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm"
-              >
-                Try as Guest
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              className="text-base px-8 py-6 shadow-coral bg-coral hover:bg-coral-dark text-primary-foreground"
+              onClick={() => {
+                const guest = loginAsGuest();
+                localStorage.setItem("travearth_role", guest.role);
+                navigate("/plan");
+              }}
+            >
+              Try as Guest
+            </Button>
           </motion.div>
 
           {/* Stats */}
