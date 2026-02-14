@@ -6,6 +6,10 @@ const Footer = () => {
     ? localStorage.getItem("travearth_role")
     : null;
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="bg-navy text-primary-foreground/80">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
@@ -15,7 +19,7 @@ const Footer = () => {
 
           {/* Brand */}
           <div>
-            <Link to="/" className="flex items-center gap-2 mb-4">
+            <Link to="/" className="flex items-center gap-2 mb-4" onClick={scrollToTop}>
               <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
                 <Globe className="w-5 h-5 text-primary-foreground" />
               </div>
@@ -35,44 +39,44 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-sm hover:text-coral transition-colors">
+                <Link to="/" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/plan" className="text-sm hover:text-coral transition-colors">
+                <Link to="/plan" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Plan Trip
                 </Link>
               </li>
               <li>
-                <Link to="/popular-destinations" className="text-sm hover:text-coral transition-colors">
+                <Link to="/popular-destinations" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Popular Destinations
                 </Link>
               </li>
               <li>
-                <Link to="/travel-tips" className="text-sm hover:text-coral transition-colors">
+                <Link to="/travel-tips" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Travel Tips
                 </Link>
               </li>
               <li>
-                <Link to="/budget-planning" className="text-sm hover:text-coral transition-colors">
+                <Link to="/budget-planning" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Budget Planning
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-sm hover:text-coral transition-colors">
+                <Link to="/blog" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/how-it-works" className="text-sm hover:text-coral transition-colors">
+                <Link to="/how-it-works" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   How It Works
                 </Link>
               </li>
 
               {role && role !== "guest" && (
                 <li>
-                  <Link to="/dashboard" className="text-sm hover:text-coral transition-colors">
+                  <Link to="/dashboard" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                     Dashboard
                   </Link>
                 </li>
@@ -80,7 +84,7 @@ const Footer = () => {
 
               {role === "admin" && (
                 <li>
-                  <Link to="/admin" className="text-sm hover:text-coral transition-colors">
+                  <Link to="/admin" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                     Admin
                   </Link>
                 </li>
@@ -95,12 +99,12 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/plan" className="text-sm hover:text-coral transition-colors">
+                <Link to="/plan" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Plan a Trip
                 </Link>
               </li>
               <li>
-                <Link to="/my-trips" className="text-sm hover:text-coral transition-colors">
+                <Link to="/my-trips" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   My Trips
                 </Link>
               </li>
@@ -114,22 +118,22 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/about-us" className="text-sm hover:text-coral transition-colors">
+                <Link to="/about-us" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-sm hover:text-coral transition-colors">
+                <Link to="/contact" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Contact
                 </Link>
               </li>
               <li>
-                <Link to="/privacy-policy" className="text-sm hover:text-coral transition-colors">
+                <Link to="/privacy-policy" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-sm hover:text-coral transition-colors">
+                <Link to="/terms" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Terms of Service
                 </Link>
               </li>
@@ -143,22 +147,22 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/popular-destinations" className="text-sm hover:text-coral transition-colors">
+                <Link to="/popular-destinations" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Popular Destinations
                 </Link>
               </li>
               <li>
-                <Link to="/travel-tips" className="text-sm hover:text-coral transition-colors">
+                <Link to="/travel-tips" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Travel Tips
                 </Link>
               </li>
               <li>
-                <Link to="/budget-planning" className="text-sm hover:text-coral transition-colors">
+                <Link to="/budget-planning" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Budget Planning
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-sm hover:text-coral transition-colors">
+                <Link to="/blog" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Blog
                 </Link>
               </li>
@@ -172,12 +176,12 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/privacy-policy" className="text-sm hover:text-coral transition-colors">
+                <Link to="/privacy-policy" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-sm hover:text-coral transition-colors">
+                <Link to="/terms" className="text-sm hover:text-coral transition-colors" onClick={scrollToTop}>
                   Terms of Service
                 </Link>
               </li>
