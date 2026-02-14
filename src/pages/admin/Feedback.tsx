@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AdminLayout from "@/components/AdminLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -89,6 +90,7 @@ const Feedback = () => {
   };
 
   return (
+    <AdminLayout>
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-display font-bold">Feedback & Reviews</h2>
@@ -161,6 +163,7 @@ const Feedback = () => {
         </CardContent>
       </Card>
     </div>
+    </AdminLayout>
   );
 };
 

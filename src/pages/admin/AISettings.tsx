@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AdminLayout from "@/components/AdminLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -36,6 +37,7 @@ const AISettings = () => {
   };
 
   return (
+    <AdminLayout>
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-display font-bold">AI Settings</h2>
@@ -158,6 +160,7 @@ const AISettings = () => {
         </CardContent>
       </Card>
     </div>
+    </AdminLayout>
   );
 };
 

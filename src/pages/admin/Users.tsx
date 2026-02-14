@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AdminLayout from "@/components/AdminLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,11 +39,12 @@ const Users = () => {
   );
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-3xl font-display font-bold">User Management</h2>
-        <p className="text-muted-foreground">View, manage, and monitor all users on the platform.</p>
-      </div>
+    <AdminLayout>
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-3xl font-display font-bold">User Management</h2>
+          <p className="text-muted-foreground">View, manage, and monitor all users on the platform.</p>
+        </div>
 
       <div className="grid gap-4 md:grid-cols-3">
         <Card>
@@ -128,7 +130,8 @@ const Users = () => {
           </div>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </AdminLayout>
   );
 };
 

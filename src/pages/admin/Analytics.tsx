@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import AdminLayout from "@/components/AdminLayout";import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, Users, MapPin, DollarSign, Clock } from "lucide-react";
 
@@ -34,6 +34,7 @@ const Analytics = () => {
   ];
 
   return (
+    <AdminLayout>
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-display font-bold">Analytics Dashboard</h2>
@@ -140,6 +141,7 @@ const Analytics = () => {
         </CardContent>
       </Card>
     </div>
+    </AdminLayout>
   );
 };
 
